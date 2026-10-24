@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node tests/run-verification.js"
+    "test": "node tests/run-verification.js && node tests/soft-life-verification.js",
+    "test:soft-life": "node tests/soft-life-verification.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -66,6 +66,28 @@ export default function HomePage() {
 
       {/* Main Exhibition Narrative Flow */}
       <main id="main-content" className="relative z-10 flex-grow" role="main">
+        {/* Soft Life Simulator Banner */}
+        <aside aria-label="Featured Simulation Challenge" className="bg-gradient-to-r from-emerald-950 via-slate-900 to-amber-950 border-b border-emerald-500/30 pt-20 pb-3 px-4 text-center">
+          <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2 text-slate-200">
+              <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-mono font-bold border border-emerald-500/40 uppercase">
+                New Experience
+              </span>
+              <span className="font-semibold text-white">SOFT LIFE SIMULATOR:</span>
+              <span className="text-slate-300 italic hidden md:inline">
+                &ldquo;Enjoy your life. Just don&apos;t finish your money.&rdquo;
+              </span>
+            </div>
+            <a
+              href="/soft-life"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black font-mono tracking-tight transition-all shadow-md shadow-emerald-500/20 hover:scale-105"
+            >
+              <span>Play 14-Day Simulation</span>
+              <span>→</span>
+            </a>
+          </div>
+        </aside>
+
         {/* Section 01: Monumental Opening Statement */}
         <HeroSection />
 

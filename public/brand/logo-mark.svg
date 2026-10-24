@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none">
+  <defs>
+    <linearGradient id="markCoinGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="markAuraGrad" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="72" height="72" rx="22" fill="#090D16" stroke="#26334D" stroke-width="1.5"/>
+  <rect x="10" y="10" width="60" height="60" rx="18" fill="url(#markAuraGrad)" stroke="#10B981" stroke-width="1.5" stroke-opacity="0.4"/>
+  <circle cx="40" cy="40" r="22" fill="url(#markCoinGrad)"/>
+  <path d="M32 29 L32 51 M48 29 L48 51 M32 33 L48 47 M28 36 L52 36 M28 44 L52 44" 
+        stroke="#090D16" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="62" cy="18" r="4" fill="#F59E0B"/>
+</svg>

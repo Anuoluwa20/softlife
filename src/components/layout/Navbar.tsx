@@ -90,6 +90,16 @@ export function Navbar({ onOpenSubmission, onFocusSearch, onOpenPalette }: Navba
             <span className="hidden sm:inline text-[11px] uppercase tracking-wider">Colors</span>
           </button>
 
+          {/* Soft Life Simulator Link */}
+          <a
+            href="/soft-life"
+            aria-label="Play Soft Life Simulator"
+            className="flex items-center gap-1.5 h-9 px-3.5 rounded-full border border-emerald-500/40 bg-emerald-500/15 text-emerald-300 hover:bg-emerald-500 hover:text-slate-950 transition-all text-xs font-mono font-bold shadow-[0_0_12px_rgba(16,185,129,0.2)]"
+            title="Interactive Financial Simulator"
+          >
+            <span>🎮 Soft Life</span>
+          </a>
+
           {/* Quick Search Shortcut */}
           <button
             onClick={onFocusSearch}

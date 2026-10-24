@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" fill="none">
+  <defs>
+    <linearGradient id="slCoinGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="slAuraGrad" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Coin & Soft Aura -->
+  <g transform="translate(12, 12)">
+    <rect x="0" y="0" width="56" height="56" rx="18" fill="url(#slAuraGrad)" stroke="#10B981" stroke-width="1.5" stroke-opacity="0.4"/>
+    <circle cx="28" cy="28" r="18" fill="url(#slCoinGrad)"/>
+    <path d="M22 19 L22 37 M34 19 L34 37 M22 22 L34 34 M19 25 L37 25 M19 31 L37 31" 
+          stroke="#090D16" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="48" cy="12" r="3" fill="#F59E0B"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(82, 33)">
+    <text font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" letter-spacing="-0.03em" fill="#F8FAFC">
+      SOFT LIFE
+    </text>
+    <text y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="10" letter-spacing="0.22em" fill="#10B981">
+      SIMULATOR • NAIJA
+    </text>
+  </g>
+</svg>

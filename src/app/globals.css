@@ -24,6 +24,11 @@
   --font-editorial: 'Newsreader', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'Space Mono', monospace;
+
+  /* Glow vars */
+  --glow-terracotta: 0 0 40px rgba(217, 83, 47, 0.35);
+  --glow-bronze: 0 0 40px rgba(212, 175, 55, 0.30);
+  --glow-sm-terracotta: 0 0 16px rgba(217, 83, 47, 0.25);
 }
 
 html {
@@ -41,19 +46,19 @@ body {
   flex-direction: column;
 }
 
-/* Custom Archival Focus Visible Outline */
+/* ── Focus Ring ─────────────────────────────────── */
 :focus-visible {
   outline: 2px solid #D4AF37 !important;
   outline-offset: 3px !important;
 }
 
-/* Subtle Film Grain Noise Texture Overlay */
+/* ── Archival Film Grain ─────────────────────────── */
 .archival-grain {
   background-image: radial-gradient(rgba(244, 241, 234, 0.045) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
-/* Printer Registration Crosshair Target (+) */
+/* ── Printer Registration Crosshair ─────────────── */
 .registration-crosshair {
   position: relative;
 }
@@ -66,7 +71,7 @@ body {
   pointer-events: none;
 }
 
-/* Glassmorphism Sheen */
+/* ── Glassmorphism ──────────────────────────────── */
 .glass-panel {
   background: rgba(13, 13, 16, 0.75);
   backdrop-filter: blur(20px);
@@ -82,30 +87,134 @@ body {
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
 }
 
-/* Custom Scrollbar for Catalog Browsing */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+/* ── Text Gradient Utilities ────────────────────── */
+.text-gradient-bronze {
+  background: linear-gradient(135deg, #D4AF37 0%, #E8C96B 50%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-::-webkit-scrollbar-track {
-  background: #08080A;
+.text-gradient-fire {
+  background: linear-gradient(135deg, #D9532F 0%, #E8853A 50%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #26262F;
-  border-radius: 3px;
+.text-gradient-hero {
+  background: linear-gradient(120deg, #F4F1EA 0%, #D4AF37 40%, #D9532F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #D9532F;
+/* ── Glow Borders ───────────────────────────────── */
+.border-glow-terracotta {
+  box-shadow: inset 0 0 0 1px rgba(217, 83, 47, 0.5), var(--glow-sm-terracotta);
 }
 
-/* Reduced Motion Safety */
+.border-glow-bronze {
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.4), 0 0 16px rgba(212, 175, 55, 0.18);
+}
+
+/* ── Animated Shimmer Skeleton ──────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #1A1A20 25%, #26262F 50%, #1A1A20 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* ── Horizontal Marquee Ticker ──────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── Card Lift on Hover ──────────────────────────── */
+.card-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              border-color 0.2s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6), var(--glow-sm-terracotta);
+}
+
+/* ── Section Divider Lines ───────────────────────── */
+.section-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12) 30%, rgba(212,175,55,0.25) 50%, rgba(255,255,255,0.12) 70%, transparent);
+}
+
+/* ── Scan-line Overlay (darkroom feel) ───────────── */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.07) 2px,
+    rgba(0, 0, 0, 0.07) 4px
+  );
+  pointer-events: none;
+}
+
+/* ── Pull-quote Accent ───────────────────────────── */
+.pullquote-accent {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.pullquote-accent::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #D4AF37 0%, #D9532F 100%);
+  border-radius: 2px;
+}
+
+/* ── Neon Dot Pulse ──────────────────────────────── */
+@keyframes neon-pulse {
+  0%, 100% { box-shadow: 0 0 4px 1px rgba(217, 83, 47, 0.8); }
+  50%       { box-shadow: 0 0 10px 3px rgba(217, 83, 47, 0.4); }
+}
+
+.neon-dot {
+  animation: neon-pulse 2.5s ease-in-out infinite;
+}
+
+/* ── Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: #08080A; }
+::-webkit-scrollbar-thumb { background: #26262F; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #D9532F; }
+
+/* ── Reduced Motion Safety ───────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
