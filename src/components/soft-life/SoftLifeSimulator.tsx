@@ -4,15 +4,15 @@ import React, { useState } from "react";
 import { 
   Sparkles, 
   ArrowRight, 
-  ShieldAlert, 
-  CheckCircle, 
   ChevronRight, 
   RotateCcw, 
-  HelpCircle,
-  Coins,
-  Smile,
-  Zap,
-  Info
+  Coins, 
+  Info, 
+  Compass, 
+  ShieldCheck, 
+  CheckCircle2,
+  TrendingUp,
+  Award
 } from "lucide-react";
 import {
   CHARACTERS,
@@ -31,6 +31,8 @@ import { ScenarioCard } from "./ScenarioCard";
 import { ReceiptSlip } from "./ReceiptSlip";
 import { RecapDashboard } from "./RecapDashboard";
 import { ShareCardModal } from "./ShareCardModal";
+import { InspirationsModal } from "./InspirationsModal";
+import { SoftLifeLogo } from "@/components/brand/SoftLifeLogo";
 
 type GameStage = "welcome" | "character-setup" | "simulation-setup" | "playing" | "receipt" | "recap";
 
@@ -70,8 +72,9 @@ export function SoftLifeSimulator() {
   // Replay & History Comparison
   const [previousRound, setPreviousRound] = useState<RoundResult | null>(null);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isInspirationsModalOpen, setIsInspirationsModalOpen] = useState(false);
 
-  // Starting a fresh run
+  // Starting setup
   const handleStartSetup = () => {
     setStage("character-setup");
   };
@@ -155,7 +158,7 @@ export function SoftLifeSimulator() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-slate-950 font-sans">
+    <div className="min-h-screen bg-[#090D16] text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-slate-950 font-sans">
       {/* 1. HUD (Visible during gameplay and receipt) */}
       {(stage === "playing" || stage === "receipt") && (
         <DashboardHUD
@@ -167,6 +170,7 @@ export function SoftLifeSimulator() {
           character={selectedCharacter}
           profile={selectedProfile}
           recentDelta={recentDelta}
+          onOpenInspirations={() => setIsInspirationsModalOpen(true)}
         />
       )}
 
@@ -176,15 +180,27 @@ export function SoftLifeSimulator() {
         {/* SCREEN 1: WELCOME SCREEN                             */}
         {/* ==================================================== */}
         {stage === "welcome" && (
-          <div className="max-w-2xl mx-auto px-4 py-8 text-center space-y-8 animate-in fade-in duration-300">
-            {/* Currency Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
-              <Coins className="w-4 h-4" />
-              <span>NIGERIA&apos;S FIRST CULTURAL MONEY SIMULATOR</span>
+          <div className="max-w-3xl mx-auto px-4 py-8 text-center space-y-8 animate-in fade-in duration-300">
+            {/* Top Bar with Brand Logo and Inspirations Button */}
+            <div className="flex items-center justify-between max-w-xl mx-auto pb-4 border-b border-slate-800/80">
+              <SoftLifeLogo size="md" />
+              <button
+                type="button"
+                onClick={() => setIsInspirationsModalOpen(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold transition-all cursor-pointer shadow-sm"
+              >
+                <Compass className="w-4 h-4" />
+                <span>520+ Inspirations</span>
+              </button>
             </div>
 
             {/* Title & Tagline */}
-            <div className="space-y-3">
+            <div className="space-y-4 pt-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
+                <Coins className="w-4 h-4" />
+                <span>NIGERIA&apos;S CULTURAL FINANCIAL SIMULATION</span>
+              </div>
+
               <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none">
                 SOFT LIFE <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-400">
@@ -198,42 +214,42 @@ export function SoftLifeSimulator() {
 
             {/* Product Promise */}
             <p className="text-sm sm:text-base text-slate-300 max-w-lg mx-auto leading-relaxed">
-              Navigate 14 days of realistic Nigerian financial dilemmas—from morning danfo price surges and MTN data renewals to Friday suya hangouts and &ldquo;urgent 2k&rdquo; family requests.
+              Navigate 14 days of realistic Nigerian financial dilemmas—from morning danfo price surges and MTN data bundle renewals to Friday suya hangouts and &ldquo;urgent 2k&rdquo; family requests.
             </p>
 
             {/* Value Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
-              <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
-                <span className="text-2xl mb-1 block">🛡️</span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left max-w-2xl mx-auto">
+              <div className="p-5 rounded-2xl bg-[#121927] border border-[#26334D] shadow-lg">
+                <span className="text-2xl mb-1.5 block">🛡️</span>
                 <h4 className="font-bold text-white text-sm">Zero Real Risk</h4>
                 <p className="text-xs text-slate-400 mt-1">All money is fictional. Make mistakes and learn freely.</p>
               </div>
-              <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
-                <span className="text-2xl mb-1 block">🇳🇬</span>
+              <div className="p-5 rounded-2xl bg-[#121927] border border-[#26334D] shadow-lg">
+                <span className="text-2xl mb-1.5 block">🇳🇬</span>
                 <h4 className="font-bold text-white text-sm">100% Naija Reality</h4>
-                <p className="text-xs text-slate-400 mt-1">Authentic street costs, food vendor choices, and cultural pressures.</p>
+                <p className="text-xs text-slate-400 mt-1">Authentic street costs, food vendor choices, and cultural trade-offs.</p>
               </div>
-              <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
-                <span className="text-2xl mb-1 block">⚖️</span>
-                <h4 className="font-bold text-white text-sm">Balance Vibe & Cash</h4>
-                <p className="text-xs text-slate-400 mt-1">Soft life isn&apos;t just hoarding naira; it&apos;s managing life with peace of mind.</p>
+              <div className="p-5 rounded-2xl bg-[#121927] border border-[#26334D] shadow-lg">
+                <span className="text-2xl mb-1.5 block">⚖️</span>
+                <h4 className="font-bold text-white text-sm">Balance Vibe & Runway</h4>
+                <p className="text-xs text-slate-400 mt-1">Soft life isn&apos;t hoarding naira; it&apos;s managing life with peace of mind.</p>
               </div>
             </div>
 
             {/* Fictional Money Disclaimer */}
-            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-400 max-w-md mx-auto flex items-center gap-2.5 text-left">
+            <div className="p-4 rounded-2xl bg-[#121927]/80 border border-[#26334D] text-xs text-slate-400 max-w-md mx-auto flex items-center gap-3 text-left">
               <Info className="w-5 h-5 text-emerald-400 shrink-0" />
               <span>
-                <strong>Notice:</strong> No real bank accounts or funds are connected. Soft Life Simulator is a safe educational sandbox.
+                <strong>Notice:</strong> No real bank accounts or funds are connected. Soft Life Simulator is a safe, educational simulation sandbox.
               </span>
             </div>
 
             {/* Action CTA */}
-            <div>
+            <div className="pt-2">
               <button
                 type="button"
                 onClick={handleStartSetup}
-                className="px-8 py-4 rounded-2xl font-black text-base bg-emerald-500 hover:bg-emerald-400 text-slate-950 inline-flex items-center gap-3 shadow-xl shadow-emerald-500/25 cursor-pointer transition-all hover:scale-105 active:scale-95"
+                className="px-9 py-4 rounded-2xl font-black text-base bg-emerald-500 hover:bg-emerald-400 text-slate-950 inline-flex items-center gap-3 shadow-xl shadow-emerald-500/30 cursor-pointer transition-all hover:scale-105 active:scale-95"
               >
                 <span>Enter Simulation</span>
                 <ArrowRight className="w-5 h-5" />
@@ -269,22 +285,22 @@ export function SoftLifeSimulator() {
                     onClick={() => setSelectedCharacter(char)}
                     className={`p-5 rounded-2xl border text-left transition-all duration-200 cursor-pointer relative ${
                       isSelected
-                        ? "bg-slate-800/90 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.2)] ring-1 ring-emerald-500"
-                        : "bg-slate-900 border-slate-800 hover:bg-slate-850 hover:border-slate-700"
+                        ? "bg-[#1B2436] border-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.25)] ring-1 ring-emerald-500 scale-[1.01]"
+                        : "bg-[#121927] border-[#26334D] hover:bg-[#1B2436] hover:border-slate-600"
                     }`}
                   >
                     <div className="flex items-start gap-4">
-                      <span className="text-4xl p-2 bg-slate-800 rounded-xl border border-slate-700">
+                      <span className="text-4xl p-2.5 bg-[#090D16] rounded-2xl border border-slate-700 shadow-inner">
                         {char.avatarUrl}
                       </span>
                       <div className="space-y-1 flex-1">
                         <div className="flex items-center justify-between">
                           <h3 className="font-bold text-base text-white">{char.name}</h3>
                           {isSelected && (
-                            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#10B981]" />
                           )}
                         </div>
-                        <p className="text-xs text-emerald-400 font-mono font-medium">
+                        <p className="text-xs text-emerald-400 font-mono font-bold">
                           {char.role}
                         </p>
                         <p className="text-xs text-slate-400 italic">
@@ -308,9 +324,9 @@ export function SoftLifeSimulator() {
               <button
                 type="button"
                 onClick={() => handleConfirmCharacter(selectedCharacter)}
-                className="px-6 py-3 rounded-xl font-bold text-sm bg-emerald-500 hover:bg-emerald-400 text-slate-950 inline-flex items-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/20"
+                className="px-7 py-3.5 rounded-2xl font-black text-sm bg-emerald-500 hover:bg-emerald-400 text-slate-950 inline-flex items-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/25 active:scale-95"
               >
-                <span>Continue to Income Setup</span>
+                <span>Continue to Challenge Setup</span>
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
@@ -336,7 +352,7 @@ export function SoftLifeSimulator() {
 
             {/* Income Profile Options */}
             <div className="space-y-3">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold block">
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold block">
                 Choose Starting Financial Profile:
               </span>
               <div className="space-y-2.5">
@@ -347,22 +363,22 @@ export function SoftLifeSimulator() {
                       key={prof.id}
                       type="button"
                       onClick={() => setSelectedProfile(prof)}
-                      className={`w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all cursor-pointer ${
+                      className={`w-full p-4.5 rounded-2xl border text-left flex items-center justify-between transition-all cursor-pointer ${
                         isSelected
-                          ? "bg-slate-800/90 border-emerald-500 shadow-md ring-1 ring-emerald-500"
-                          : "bg-slate-900 border-slate-800 hover:bg-slate-850"
+                          ? "bg-[#1B2436] border-emerald-500 shadow-md ring-1 ring-emerald-500"
+                          : "bg-[#121927] border-[#26334D] hover:bg-[#1B2436]"
                       }`}
                     >
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="font-bold text-sm text-white">{prof.title}</span>
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
                             {prof.difficulty}
                           </span>
                         </div>
                         <p className="text-xs text-slate-400 mt-1">{prof.description}</p>
                       </div>
-                      <span className="font-mono text-sm font-bold text-emerald-400 shrink-0 pl-3">
+                      <span className="font-mono text-sm font-black text-emerald-400 shrink-0 pl-3">
                         {prof.badge}
                       </span>
                     </button>
@@ -373,7 +389,7 @@ export function SoftLifeSimulator() {
 
             {/* Financial Goal Options */}
             <div className="space-y-3">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold block">
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold block">
                 Choose Your 14-Day Objective:
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -384,10 +400,10 @@ export function SoftLifeSimulator() {
                       key={g.id}
                       type="button"
                       onClick={() => setSelectedGoal(g)}
-                      className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                      className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
                         isSelected
-                          ? "bg-slate-800 border-emerald-500 shadow-sm ring-1 ring-emerald-500"
-                          : "bg-slate-900 border-slate-800 hover:bg-slate-850"
+                          ? "bg-[#1B2436] border-emerald-500 shadow-sm ring-1 ring-emerald-500"
+                          : "bg-[#121927] border-[#26334D] hover:bg-[#1B2436]"
                       }`}
                     >
                       <span className="font-bold text-xs text-white block mb-1">{g.title}</span>
@@ -398,11 +414,11 @@ export function SoftLifeSimulator() {
               </div>
             </div>
 
-            {/* Previous Round Comparison Alert (if replaying) */}
+            {/* Previous Round Comparison Alert */}
             {previousRound && (
-              <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-slate-400 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-[#121927] border border-[#26334D] text-xs font-mono text-slate-400 flex items-center justify-between">
                 <span>Previous Round Result:</span>
-                <span className="text-emerald-400 font-bold">
+                <span className="text-emerald-400 font-black">
                   {previousRound.archetypeTitle} (₦{previousRound.endingBalance.toLocaleString()} remaining)
                 </span>
               </div>
@@ -419,7 +435,7 @@ export function SoftLifeSimulator() {
               <button
                 type="button"
                 onClick={handleLaunchSimulation}
-                className="px-8 py-3.5 rounded-xl font-black text-sm bg-emerald-500 hover:bg-emerald-400 text-slate-950 inline-flex items-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/25"
+                className="px-8 py-4 rounded-2xl font-black text-sm bg-emerald-500 hover:bg-emerald-400 text-slate-950 inline-flex items-center gap-2 cursor-pointer shadow-xl shadow-emerald-500/25 active:scale-95"
               >
                 <span>Start Day 1</span>
                 <ArrowRight className="w-4 h-4" />
@@ -470,6 +486,7 @@ export function SoftLifeSimulator() {
             goal={selectedGoal}
             onReplay={handleReplay}
             onOpenShareModal={() => setIsShareModalOpen(true)}
+            onOpenInspirations={() => setIsInspirationsModalOpen(true)}
           />
         )}
       </main>
@@ -493,9 +510,15 @@ export function SoftLifeSimulator() {
         />
       )}
 
-      {/* Persistent Clean Footer */}
-      <footer className="w-full py-4 text-center text-xs font-mono text-slate-500 border-t border-slate-900 bg-slate-950">
-        Soft Life Simulator v1.0 • Built with the Agent-Based Website Builder Workflow • Fictional Currency Only
+      {/* 520+ Inspirations & Brand Tokens Modal */}
+      <InspirationsModal
+        isOpen={isInspirationsModalOpen}
+        onClose={() => setIsInspirationsModalOpen(false)}
+      />
+
+      {/* Persistent Clean Brand Footer */}
+      <footer className="w-full py-4 text-center text-xs font-mono text-slate-500 border-t border-[#26334D]/60 bg-[#090D16]">
+        Soft Life Simulator v1.0 • Built with Agent-Based Website Builder Workflow • Fictional Currency Only
       </footer>
     </div>
   );

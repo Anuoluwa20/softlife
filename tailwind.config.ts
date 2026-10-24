@@ -48,6 +48,18 @@ const config: Config = {
           light: "#2B3E60",
           sky: "#5A82B8",
         },
+        softlife: {
+          canvas: "#090D16",
+          surface: "#121927",
+          elevated: "#1B2436",
+          border: "#26334D",
+          emerald: "#10B981",
+          mint: "#34D399",
+          amber: "#F59E0B",
+          gold: "#FBBF24",
+          coral: "#EF4444",
+          coralLight: "#F87171",
+        },
       },
       fontFamily: {
         display: ["var(--font-display)", "Syne", "Cabinet Grotesk", "sans-serif"],

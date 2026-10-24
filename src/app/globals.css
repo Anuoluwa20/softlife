@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -25,10 +25,22 @@
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'Space Mono', monospace;
 
+  /* Soft Life Simulator Brand Tokens */
+  --sl-canvas: #090D16;
+  --sl-surface: #121927;
+  --sl-elevated: #1B2436;
+  --sl-border: #26334D;
+  --sl-emerald: #10B981;
+  --sl-mint: #34D399;
+  --sl-amber: #F59E0B;
+  --sl-coral: #EF4444;
+
   /* Glow vars */
   --glow-terracotta: 0 0 40px rgba(217, 83, 47, 0.35);
   --glow-bronze: 0 0 40px rgba(212, 175, 55, 0.30);
   --glow-sm-terracotta: 0 0 16px rgba(217, 83, 47, 0.25);
+  --glow-sl-emerald: 0 0 30px rgba(16, 185, 129, 0.25);
+  --glow-sl-amber: 0 0 30px rgba(245, 158, 11, 0.25);
 }
 
 html {
